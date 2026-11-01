@@ -127,4 +127,64 @@ section {
     margin-bottom: 15px;
     padding: 5px 0;
 }
+
+/* Filtros de tareas */
+#filtros {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Botones filtros */
+#filtros button {
+    background-color: #183b56;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Efecto filtros*/
+#filtros button:hover {
+    background-color: #337d78;
+}
+
+/* Buscador de tareas */
+#buscador {
+    margin-bottom: 20px;
+}
+
+#buscador label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#buscar-tarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* ordenar tareas */
+#ordenar-tareas {
+    margin-bottom: 20px;
+}
+
+#ordenar-tareas label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#orden-prioridad {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+/* fin ordenar tareas */
+
 /* FIN TODO FORMULARIO*/

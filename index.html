@@ -41,6 +41,32 @@
        <!-- Tareas -->
        <section id="seccion-tareas"><!-- Sección para nuestras tareas -->
        <h2>Mis tareas</h2>
+       <!-- Filtros de tareas -->
+	    <div id="filtros">
+    		<button id="filtro-todas">Todas</button>
+    		<button id="filtro-pendientes">Pendientes</button>
+    		<button id="filtro-completadas">Completadas</button>
+	    </div>
+	    <!-- fin Filtros de tareas -->
+
+        <!-- Buscador de tareas -->
+	    <div id="buscador">
+    		<label for="buscar-tarea">Buscar tarea:</label>
+    		<input type="text" id="buscar-tarea" placeholder="Escribe el nombre de una tarea">
+	    </div>
+	    <!-- fin buscador de atareas -->
+
+        <!-- Ordenar tareas -->
+	    <div id="ordenar-tareas">
+    	    <label for="orden-prioridad">Ordenar tareas:</label>
+
+    	    <select id="orden-prioridad">
+        	    <option value="registro">Orden de registro</option>
+        	    <option value="prioridad">Por prioridad</option>
+    	    </select>
+	    </div>
+	    <!-- Fin Ordenar tareas -->
+
        <p>Lista de tareas.</p>
        <ul id="lista-tareas"> <!-- este id nos ayuda a identificar desde JS --> 
        </ul><!-- crea una lista -->

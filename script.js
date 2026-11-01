@@ -1,5 +1,6 @@
 /* Arregolo de tareas */
 let tareas = [];
+let filtroActual = "todas";/* Esta variable almacena qué tipo de tareas queremos mostrar */
 
 /* Datos del HTML */
 /* getElementById() busca un elemento de HTML */
@@ -11,7 +12,49 @@ const lista = document.getElementById("lista-tareas");
 /* Mostrar las tareas */
 function mostrarTareas() {
     lista.innerHTML = "";
-    tareas.forEach(function(tarea, indice) {
+    /* preparar las areas para ordenarlas */
+    let tareasOrdenadas = tareas.map(function(tarea, indice) {
+    return { tarea: tarea, indice: indice };
+    });
+
+    /* Ordenar por prioridad */
+    if (selectorOrden.value === "prioridad") {
+
+    const valoresPrioridad = {
+        alta: 1,
+        media: 2,
+        baja: 3
+    };
+
+    tareasOrdenadas.sort(function(a, b) {
+        return valoresPrioridad[a.tarea.prioridad.toLowerCase()] -
+               valoresPrioridad[b.tarea.prioridad.toLowerCase()];
+    });
+
+}
+/* Fin preparar las areas para ordenarlas */
+
+    tareasOrdenadas.forEach(function(elementoOrdenado) {
+    const tarea = elementoOrdenado.tarea;
+    const indice = elementoOrdenado.indice;
+    
+    /* Comprobar si la tarea debe mostrarce */
+    if (filtroActual === "pendientes" && tarea.completada) {
+        return;
+    }
+
+    if (filtroActual === "completadas" && !tarea.completada) {
+        return;
+    }
+    /* fin comprobar si la tarea debe mostrarce */
+    /* Comprobar el texto de busqueda */
+    const textoBusqueda = campoBusqueda.value.toLowerCase().trim();
+
+    if (!tarea.titulo.toLowerCase().includes(textoBusqueda)) { /* esta condición filtra lo que coincide */
+    return;
+    }
+    /* fin comprobar el texto de busqueda */
+
         const elemento = document.createElement("li");
         /* casilla para completar */
         const casilla = document.createElement("input");
@@ -133,3 +176,41 @@ formulario.addEventListener("submit", function(evento) {
     titulo.value = "";
 
 });
+
+/* Botones de fltro */
+const botonTodas = document.getElementById("filtro-todas");
+const botonPendientes = document.getElementById("filtro-pendientes");
+const botonCompletadas = document.getElementById("filtro-completadas");
+
+/* Todas las tareas */
+botonTodas.addEventListener("click", function() {
+    filtroActual = "todas";
+    mostrarTareas();
+});
+
+/* Tareas pendientes */
+botonPendientes.addEventListener("click", function() {
+    filtroActual = "pendientes";
+    mostrarTareas();
+});
+
+/* Tareas completas */
+botonCompletadas.addEventListener("click", function() {
+    filtroActual = "completadas";
+    mostrarTareas();
+});
+
+/* Buscar tarea por nombre */
+const campoBusqueda = document.getElementById("buscar-tarea");
+
+campoBusqueda.addEventListener("input", function() {
+    mostrarTareas();
+});
+
+/* Seleccionar orden de tareas */
+const selectorOrden = document.getElementById("orden-prioridad");
+
+selectorOrden.addEventListener("change", function() {
+    mostrarTareas();
+});
+/* fin Seleccionar orden de tareas */
