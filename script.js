@@ -1,3 +1,4 @@
+import { nombreVacio } from "./utilidades.js";
 /* Arregolo de tareas */
 let tareas = [];
 let filtroActual = "todas";/* Esta variable almacena qué tipo de tareas queremos mostrar */
@@ -167,7 +168,7 @@ formulario.addEventListener("submit", function(evento) {
     evento.preventDefault();
     const nombreTarea = titulo.value.trim();
     /* preguntar si no esta vacio */
-    if (nombreTarea === "") {
+    if (nombreVacio(nombreTarea)) {
         alert("Por favor, escribe el nombre de la tarea.");
         return;
     }
