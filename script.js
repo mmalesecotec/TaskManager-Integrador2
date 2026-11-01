@@ -159,6 +159,18 @@ formulario.addEventListener("submit", function(evento) {
         return;
     }
 
+    /* Verificar si la tarea ya existe */
+    const tareaExiste = tareas.some(function(tarea) { /*revisa si ya existe la tarea */
+    /*no distingue mayúsculas ni minúsculas */
+    return tarea.titulo.toLowerCase() === nombreTarea.toLowerCase();
+    });
+
+    if (tareaExiste) {
+    alert("Esta tarea ya está registrada.");
+    return;
+    }
+    /* Fin verificar tarea duplicada */
+
     /* crear la nueva tarea */
     const nuevaTarea = {
         titulo: nombreTarea,
