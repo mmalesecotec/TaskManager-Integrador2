@@ -218,4 +218,17 @@ section {
 }
 /* fin del DASHBOARD */
 
+/* Seccioón tareas API */
+#seccion-api {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+/* Lista tareas API */
+#lista-api li {
+    margin-bottom: 12px;
+}
+/* Fin Seccioón tareas API */
 /* FIN TODO FORMULARIO*/

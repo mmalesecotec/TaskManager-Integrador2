@@ -237,3 +237,35 @@ function actualizarDashboard() {
 
 }
 /* Fin Actualizar Dashboard */
+
+/* Consultar tareas a JSONPLACEHOLDER */
+function consultarAPI() {
+    /*solicita información- 5 tareas*/
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
+        .then(function(respuesta) {
+            return respuesta.json();/* convierte la respuesta en datos que JS puede utilizar. */
+        })
+        .then(function(datos) {
+
+        console.log("Tareas recibidas desde la API:");
+        console.log(datos);
+        /* Mostrar tareas en pantalla */
+        const listaAPI = document.getElementById("lista-api");
+        listaAPI.innerHTML = "";
+        datos.forEach(function(tarea) {
+        const elemento = document.createElement("li");
+        elemento.textContent = tarea.title + " - " +
+            (tarea.completed ? "Completada" : "Pendiente");
+        listaAPI.appendChild(elemento);
+    });
+
+})
+        .catch(function(error) {
+            console.log("Error al consultar la API:", error);
+        });
+
+}
+
+/* Ejecutar consulta */
+consultarAPI();
+/* Fin Consultar tareas a JSONPLACEHOLDER */
