@@ -5,5 +5,5 @@ ChatGPT
 
 "¿Cómo puedo modificar mi función consultarAPI() para utilizar async/await, fetch() y try/catch al consultar https://jsonplaceholder.typicode.com/todos?_limit=5? Necesito mostrar las tareas obtenidas y controlar los posibles errores de conexión".
 
-
+3. Creo que ninguna, por que trabajo con la IA probando instrucciones paso a paso
 
