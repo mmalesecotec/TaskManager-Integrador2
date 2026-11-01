@@ -11,6 +11,7 @@ const lista = document.getElementById("lista-tareas");
 
 /* Mostrar las tareas */
 function mostrarTareas() {
+    actualizarDashboard();
     lista.innerHTML = "";
     /* preparar las areas para ordenarlas */
     let tareasOrdenadas = tareas.map(function(tarea, indice) {
@@ -37,7 +38,7 @@ function mostrarTareas() {
     tareasOrdenadas.forEach(function(elementoOrdenado) {
     const tarea = elementoOrdenado.tarea;
     const indice = elementoOrdenado.indice;
-    
+
     /* Comprobar si la tarea debe mostrarce */
     if (filtroActual === "pendientes" && tarea.completada) {
         return;
@@ -214,3 +215,25 @@ selectorOrden.addEventListener("change", function() {
     mostrarTareas();
 });
 /* fin Seleccionar orden de tareas */
+
+/* Actualizar Dashboard */
+function actualizarDashboard() {
+
+    /* Contar todas las tareas */
+    const total = tareas.length;
+
+    /* Contar tareas completadas */
+    const completadas = tareas.filter(function(tarea) {
+        return tarea.completada === true;
+    }).length;
+
+    /* contar tareas pendientes */
+    const pendientes = total - completadas;
+
+    /* Mostrar resultados */
+    document.getElementById("total-tareas").textContent = total;
+    document.getElementById("tareas-pendientes").textContent = pendientes;
+    document.getElementById("tareas-completadas").textContent = completadas;
+
+}
+/* Fin Actualizar Dashboard */

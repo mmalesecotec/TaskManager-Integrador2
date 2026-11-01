@@ -187,4 +187,35 @@ section {
 }
 /* fin ordenar tareas */
 
+/* DASHBOARD */
+#dashboard {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+}
+
+/* Contenedor estadiística */
+.resumen-tareas {
+    display: flex;
+    gap: 20px;
+}
+
+/* Resumen */
+.resumen-tareas article {
+    background-color: #eef3f8;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+}
+
+/* Números del resumen */
+.resumen-tareas article p {
+    font-size: 30px;
+    font-weight: bold;
+    color: #183b56;
+}
+/* fin del DASHBOARD */
+
 /* FIN TODO FORMULARIO*/
