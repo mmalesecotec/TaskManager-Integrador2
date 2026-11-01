@@ -272,41 +272,48 @@ function actualizarDashboard() {
 /* Fin Actualizar Dashboard */
 
 /* Consultar tareas a JSONPLACEHOLDER */
-function consultarAPI() {
+
+/* Consultar tareas a JSONPLACEHOLDER */
+async function consultarAPI() {
 
     const mensajeAPI = document.getElementById("mensaje-api");
-	mensajeAPI.textContent = "Cargando tareas...";
+    mensajeAPI.textContent = "Cargando tareas...";
 
-    /*solicita información- 5 tareas*/
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-    .then(function(respuesta) {
-    /* Verifica que la respuesta sea correcta */
-    if (!respuesta.ok) {
-        throw new Error("Error al consultar el servidor");
-    }
-    return respuesta.json();
-    })
-        .then(function(datos) {
+    try {
+        /* Consultar la API */
+        const respuesta = await fetch(
+            "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        );
+
+        /* Verificar la respuesta */
+        if (!respuesta.ok) {
+            throw new Error("Error al consultar el servidor");
+        }
+
+        /* Convertir los datos a JSON */
+        const datos = await respuesta.json();
+
         mensajeAPI.textContent = "Tareas cargadas correctamente.";
-        console.log("Tareas recibidas desde la API:");
-        console.log(datos);
-        /* Mostrar tareas en pantalla */
+
+        /* Mostrar las tareas de la API */
         const listaAPI = document.getElementById("lista-api");
         listaAPI.innerHTML = "";
-        datos.forEach(function(tarea) {
-        const elemento = document.createElement("li");
-        elemento.textContent = tarea.title + " - " +
-            (tarea.completed ? "Completada" : "Pendiente");
-        listaAPI.appendChild(elemento);
-    });
 
-})
-        .catch(function(error) {
-            mensajeAPI.textContent = "No se pudieron cargar las tareas.";
-            console.log("Error al consultar la API:", error);
+        datos.forEach(function(tarea) {
+            const elemento = document.createElement("li");
+
+            elemento.textContent = tarea.title + " - " +
+                (tarea.completed ? "Completada" : "Pendiente");
+
+            listaAPI.appendChild(elemento);
         });
 
+    } catch (error) {
+        mensajeAPI.textContent = "No se pudieron cargar las tareas.";
+        console.log("Error al consultar la API:", error);
+    }
 }
+
 
 /* Consultar API al hacer Click */
 /* no se ejecuta al abrir la pagina, solo al hacer click */
@@ -317,3 +324,51 @@ document.getElementById("btn-cargar-api").addEventListener("click", function() {
 /* Mostrar las tareas guardadas al iniciar */
 mostrarTareas();
 /* Fin mostrar las tareas guardadas al iniciar */
+/* Comprobar si existen tareas guardadas */
+
+/* Cargar tareas de la API si LocalStorage está vacío */
+async function cargarTareasIniciales() {
+
+    if (tareas.length > 0) {
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(
+            "https://jsonplaceholder.typicode.com/todos?_limit=5"
+        );
+
+        if (!respuesta.ok) {
+            throw new Error("Error al consultar la API");
+        }
+
+        const datos = await respuesta.json();
+
+        datos.forEach(function(dato) {
+            const existe = tareas.some(function(tarea) {
+                return tarea.titulo.toLowerCase() === dato.title.toLowerCase();
+            });
+
+            if (!existe) {
+                tareas.push({
+                    titulo: dato.title,
+                    prioridad: "media",
+                    completada: dato.completed,
+                    fecha: new Date().toISOString()
+                });
+            }
+        });
+
+        mostrarTareas();
+
+    } catch (error) {
+        document.getElementById("mensaje-api").textContent =
+            "No se pudieron cargar las tareas iniciales. Puedes agregar tareas manualmente.";
+        console.log("Error de carga inicial:", error);
+    }
+}
+
+/* Ejecutar la carga inicial */
+cargarTareasIniciales();
+
+/* Fin Comprobar si existen tareas guardadas */
