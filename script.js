@@ -246,9 +246,13 @@ function consultarAPI() {
 
     /*solicita información- 5 tareas*/
     fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
-        .then(function(respuesta) {
-            return respuesta.json();/* convierte la respuesta en datos que JS puede utilizar. */
-        })
+    .then(function(respuesta) {
+    /* Verifica que la respuesta sea correcta */
+    if (!respuesta.ok) {
+        throw new Error("Error al consultar el servidor");
+    }
+    return respuesta.json();
+    })
         .then(function(datos) {
         mensajeAPI.textContent = "Tareas cargadas correctamente.";
         console.log("Tareas recibidas desde la API:");
