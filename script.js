@@ -1,7 +1,13 @@
 import { nombreVacio } from "./utilidades.js";
 /* Arregolo de tareas */
-let tareas = [];
+let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let filtroActual = "todas";/* Esta variable almacena qué tipo de tareas queremos mostrar */
+
+/* Guardar las tareas en LocalStorage */
+function guardarTareas() {
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+}
+/* fin Guardar las tareas en LocalStorage */
 
 /* Datos del HTML */
 /* getElementById() busca un elemento de HTML */
@@ -12,6 +18,7 @@ const lista = document.getElementById("lista-tareas");
 
 /* Mostrar las tareas */
 function mostrarTareas() {
+    guardarTareas();
     actualizarDashboard();
     lista.innerHTML = "";
     /* preparar las areas para ordenarlas */
@@ -307,3 +314,6 @@ document.getElementById("btn-cargar-api").addEventListener("click", function() {
     consultarAPI();
 });
 /* Fin Consultar tareas a JSONPLACEHOLDER */
+/* Mostrar las tareas guardadas al iniciar */
+mostrarTareas();
+/* Fin mostrar las tareas guardadas al iniciar */
