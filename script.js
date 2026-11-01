@@ -93,6 +93,19 @@ botonEditar.addEventListener("click", function() {
         return;
     }
 
+    /* Verificar si el nuevo nombre ya existe */
+const nombreRepetido = tareas.some(function(otraTarea) {
+    return otraTarea !== tarea &&
+           otraTarea.titulo.toLowerCase() === nuevoTitulo.trim().toLowerCase();
+});
+
+if (nombreRepetido) {
+    alert("Ya existe otra tarea con ese nombre.");
+    return;
+}
+/* Fin verificar nombre repetido */
+
+
     const nuevaPrioridad = prompt(
         "Escribe la prioridad: alta, media o baja",
         tarea.prioridad
