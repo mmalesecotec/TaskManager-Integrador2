@@ -231,4 +231,25 @@ section {
     margin-bottom: 12px;
 }
 /* Fin Seccioón tareas API */
+
+/* Boton API */
+#btn-cargar-api {
+    background-color: #183b56;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Efecto del boton */
+#btn-cargar-api:hover {
+    background-color: #337d78;
+}
+
+/* Mensaje */
+#mensaje-api {
+    margin-top: 15px;
+}
+
 /* FIN TODO FORMULARIO*/

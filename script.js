@@ -240,13 +240,17 @@ function actualizarDashboard() {
 
 /* Consultar tareas a JSONPLACEHOLDER */
 function consultarAPI() {
+
+    const mensajeAPI = document.getElementById("mensaje-api");
+	mensajeAPI.textContent = "Cargando tareas...";
+
     /*solicita información- 5 tareas*/
     fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
         .then(function(respuesta) {
             return respuesta.json();/* convierte la respuesta en datos que JS puede utilizar. */
         })
         .then(function(datos) {
-
+        mensajeAPI.textContent = "Tareas cargadas correctamente.";
         console.log("Tareas recibidas desde la API:");
         console.log(datos);
         /* Mostrar tareas en pantalla */
@@ -261,11 +265,15 @@ function consultarAPI() {
 
 })
         .catch(function(error) {
+            mensajeAPI.textContent = "No se pudieron cargar las tareas.";
             console.log("Error al consultar la API:", error);
         });
 
 }
 
-/* Ejecutar consulta */
-consultarAPI();
+/* Consultar API al hacer Click */
+/* no se ejecuta al abrir la pagina, solo al hacer click */
+document.getElementById("btn-cargar-api").addEventListener("click", function() {
+    consultarAPI();
+});
 /* Fin Consultar tareas a JSONPLACEHOLDER */
