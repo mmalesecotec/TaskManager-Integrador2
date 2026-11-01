@@ -54,3 +54,41 @@ footer {
     padding: 20px;
     margin-top: 30px;
 }
+
+/* TODO FORMULARIO*/
+/* Separar secciones */
+section {
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+#formulario-tarea {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Campos */
+#formulario-tarea input,
+#formulario-tarea select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+/* Botón agregar */
+#formulario-tarea button {
+    background-color: #183b56;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Efecto del botón */
+#formulario-tarea button:hover {
+    background-color: #337d78;
+}
+/* FIN TODO FORMULARIO*/

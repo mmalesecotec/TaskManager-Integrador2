@@ -22,13 +22,36 @@
             <h2>Bienvenido a TaskManager</h2>
             <p> Esta aplicación organiza y administra mis tareas.</p>
         </section>
+        
+        <!-- Formulario Nueva Tarea -->
+        <section id="nueva-tarea">
+        <h2>Agregar nueva tarea</h2>
+        <form id="formulario-tarea">
+        <label for="titulo">Nombre de la tarea:</label>
+        <input type="text" id="titulo" placeholder="Escribe una tarea">
+        <label for="prioridad">Prioridad:</label>
+        <select id="prioridad">
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+        </select>
+        <button type="submit">Agregar tarea</button>
+       </form>
+       </section>
+       <!-- Tareas -->
+       <section id="seccion-tareas"><!-- Sección para nuestras tareas -->
+       <h2>Mis tareas</h2>
+       <p>Lista de tareas.</p>
+       <ul id="lista-tareas"> <!-- este id nos ayuda a identificar desde JS --> 
+       </ul><!-- crea una lista -->
+       </section>
 
     </main>
 
     <footer><!-- PIE DE PAGINA -->
         <p>Actividad Integradora 2 - Programación de Sistemas Web</p>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
