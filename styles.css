@@ -91,4 +91,40 @@ section {
 #formulario-tarea button:hover {
     background-color: #337d78;
 }
+/* Botones de la lista*/
+#lista-tareas button {
+    margin-left: 10px;/* Deja una separación de 10 píxeles a la izquierda de cada botón */
+    padding: 5px 10px;
+    cursor: pointer;
+}
+/* Boton editar*/
+.boton-editar {
+    background-color: #2878b5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Boton eliminar*/
+.boton-eliminar {
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Efecto al pasar el mouse */
+.boton-editar:hover {
+    background-color: #1b5d8e;
+}
+
+.boton-eliminar:hover {
+    background-color: #922b21;
+}
+
+/* Espacio entre tareas */
+#lista-tareas li {
+    margin-bottom: 15px;
+    padding: 5px 0;
+}
 /* FIN TODO FORMULARIO*/

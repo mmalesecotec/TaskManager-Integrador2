@@ -11,11 +11,96 @@ const lista = document.getElementById("lista-tareas");
 /* Mostrar las tareas */
 function mostrarTareas() {
     lista.innerHTML = "";
-    tareas.forEach(function(tarea) {
+    tareas.forEach(function(tarea, indice) {
         const elemento = document.createElement("li");
-        elemento.textContent = tarea.titulo + " - Prioridad: " + tarea.prioridad;
+        /* casilla para completar */
+        const casilla = document.createElement("input");
+        casilla.type = "checkbox";
+        casilla.checked = tarea.completada;
+        /* Texto */
+        const texto = document.createElement("span");
+        texto.textContent = " " + tarea.titulo +
+            " - Prioridad: " + tarea.prioridad + " ";
+        if (tarea.completada) {
+            texto.style.textDecoration = "line-through";
+        }
+        /* Evento */
+        casilla.addEventListener("change", function() {
+            tarea.completada = casilla.checked;
+            mostrarTareas();
+        });
+        /* boton editar */
+const botonEditar = document.createElement("button");
+botonEditar.textContent = "Editar";
+botonEditar.className="boton-editar";/* asignan una clase CSS a cada botón */
+botonEditar.addEventListener("click", function() {
+
+    const nuevoTitulo = prompt(
+        "Modifica el nombre de la tarea:",
+        tarea.titulo
+    );
+
+    if (nuevoTitulo === null) {
+        return;
+    }
+
+    if (nuevoTitulo.trim() === "") {
+        alert("El nombre de la tarea no puede estar vacío.");
+        return;
+    }
+
+    const nuevaPrioridad = prompt(
+        "Escribe la prioridad: alta, media o baja",
+        tarea.prioridad
+    );
+
+    if (nuevaPrioridad === null) {
+        return;
+    }
+
+    const prioridadEditada = nuevaPrioridad.trim().toLowerCase();
+
+    if (
+        prioridadEditada !== "alta" &&
+        prioridadEditada !== "media" &&
+        prioridadEditada !== "baja"
+    ) {
+        alert("La prioridad debe ser alta, media o baja.");
+        return;
+    }
+
+    tarea.titulo = nuevoTitulo.trim();
+    tarea.prioridad = prioridadEditada;
+
+    mostrarTareas();
+
+}); /* fin editar */
+
+        /* Boton eliminar */
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.className="boton-eliminar";/* asignan una clase CSS a cada botón */
+        botonEliminar.addEventListener("click", function() {
+
+            const confirmar = confirm("¿Deseas eliminar esta tarea?");
+
+            if (confirmar) {
+                tareas.splice(indice, 1);
+                mostrarTareas();
+            }
+
+        });
+
+        /* Agregar a la lista */
+        elemento.appendChild(casilla);
+        elemento.appendChild(texto);
+        elemento.appendChild(botonEliminar);
+        elemento.appendChild(botonEditar);
+
         lista.appendChild(elemento);
+
     });
+
 }
 
 /* Agregar tarea */
